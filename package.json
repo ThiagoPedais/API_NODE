@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
     "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix"
+    "lint-fix": "eslint . --ext .ts --fix",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/shared/typeorm/migrations/",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
