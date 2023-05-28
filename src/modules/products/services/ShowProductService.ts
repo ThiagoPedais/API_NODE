@@ -2,7 +2,7 @@ import { ProductRepository } from '../typeorm/repositories/ProductsRepository';
 import Product from '../typeorm/entities/Product';
 import AppError from '@shared/errors/AppError';
 
-class ListProductService {
+class ShowProductService {
   public async execute(id: string): Promise<Product | undefined> {
     const product = await ProductRepository.findOne({
       where: {
@@ -18,4 +18,4 @@ class ListProductService {
   }
 }
 
-export default ListProductService;
+export default ShowProductService;
