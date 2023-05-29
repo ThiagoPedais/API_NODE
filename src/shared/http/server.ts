@@ -1,11 +1,12 @@
 import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 import cors from 'cors';
+import { errors } from 'celebrate';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
-import '@shared/typeorm'
+import '@shared/typeorm';
 import { AppDataSource } from 'src/data-source';
-
 
 AppDataSource.initialize().then(() => {
   const app = express();
@@ -14,6 +15,7 @@ AppDataSource.initialize().then(() => {
   app.use(express.json());
 
   app.use(routes);
+  app.use(errors());
 
   app.use(
     (
@@ -38,6 +40,4 @@ AppDataSource.initialize().then(() => {
   app.listen(8000, () => {
     console.log('Server running on port 8000 😄');
   });
-
-})
-
+});

@@ -8,3 +8,4 @@ Para instalar o TypeScript e outras dependências relacionadas, execute o seguin
 
 ```bash
 yarn add typescript ts-node-dev @types/node tsconfig-paths -D
+

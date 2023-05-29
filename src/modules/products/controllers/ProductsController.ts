@@ -32,7 +32,7 @@ export default class ProductsController {
       quantity,
     });
 
-    return res.json(DeleteProductService);
+    return res.json(product);
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
@@ -56,6 +56,6 @@ export default class ProductsController {
     const deleteProduct = new DeleteProductService();
     await deleteProduct.execute(id);
 
-    return res.json([])
+    return res.json([]);
   }
 }
