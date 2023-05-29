@@ -3,6 +3,9 @@ import User from '../typeorm/entities/User';
 import UserRepository from '../typeorm/repositories/UserRepository';
 import { compare, hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import authConfig from '@config/auth'
+
+
 
 interface Request {
   email: string;
@@ -26,9 +29,9 @@ class CreateSessionsService {
       throw new AppError('Password or email address invalid', 401);
     }
 
-    const token = sign({}, '1996b0e9031377d1f04360d205537611', {
+    const token = sign({}, authConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: authConfig.jwt.expiresIn
     });
 
     return {
