@@ -1,11 +1,9 @@
 import { Request, Response } from 'express';
-import ListUserService from '../services/ListUsersService';
-import CreateUserService from '../services/CreateUserService';
 import ShowProfileService from '../services/ShowProfileService';
 import UpdateProfileService from '../services/UpdateProfileService';
 
 export default class ProfileController {
-  public async index(req: Request, res: Response): Promise<Response> {
+  public async show(req: Request, res: Response): Promise<Response> {
     const showProfile = new ShowProfileService();
     const user_id = req.user.id;
 
