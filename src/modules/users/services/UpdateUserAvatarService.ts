@@ -7,11 +7,11 @@ import fs from 'fs';
 
 interface Request {
   user_id: string;
-  avatarFileName: string;
+  avatarFilename: string;
 }
 
 class UpdateUserAvatarService {
-  public async execute({ user_id, avatarFileName }: Request): Promise<User> {
+  public async execute({ user_id, avatarFilename }: Request): Promise<User> {
     const user = await UserRepository.findById(user_id);
 
     if (!user) {
@@ -27,7 +27,7 @@ class UpdateUserAvatarService {
       }
     }
 
-    user.avatar = avatarFileName;
+    user.avatar = avatarFilename;
     await UserRepository.save(user);
 
     return user;
