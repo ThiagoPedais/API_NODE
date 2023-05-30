@@ -10,15 +10,15 @@ interface Request {
 
 class SendForgotPasswordEmailService {
   public async execute({ email }: Request): Promise<void> {
-    const user = await UserRepository.findByEmail(email)
+    const user = await UserRepository.findByEmail(email);
 
-    if(!user) {
-      throw new AppError("User does not exist")
+    if (!user) {
+      throw new AppError('User does not exist');
     }
 
     const token = await UserTokensRepository.generate(user.id);
     console.log(token);
-
+    // return user;
   }
 }
 
