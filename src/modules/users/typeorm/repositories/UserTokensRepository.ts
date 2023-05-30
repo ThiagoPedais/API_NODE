@@ -1,7 +1,7 @@
 import { AppDataSource } from 'src/data-source';
 import UserToken from '../entities/UserToken';
 
-const UseTokensRepository = AppDataSource.getRepository(UserToken).extend({
+const UserTokensRepository = AppDataSource.getRepository(UserToken).extend({
   findByToken(token: string) {
     return this.createQueryBuilder('user')
       .where('user.token = :token', { token })
@@ -17,4 +17,4 @@ const UseTokensRepository = AppDataSource.getRepository(UserToken).extend({
   },
 });
 
-export default UseTokensRepository;
+export default UserTokensRepository;
