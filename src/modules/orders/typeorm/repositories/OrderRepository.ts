@@ -16,16 +16,19 @@ interface Request {
 const OrderRepository = AppDataSource.getRepository(Order).extend({
   async findById(id: string) {
     return await this.manager.findOne(Order, {
-      where: {id},
+      where: { id },
       relations: ['order_products', 'customer']
     })
   },
 
-  async createOrder({customer,products}: Request) {
-    return await this.create({
+  async createOrder({ customer, products }: Request) {
+    const order = this.create({
       customer,
       order_products: products
     })
+    await this.save(order)
+
+    return order
   }
 
 });
