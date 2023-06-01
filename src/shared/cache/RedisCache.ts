@@ -2,11 +2,15 @@ import Redis, { Redis as RedisClient } from 'ioredis';
 import chacheConfig from '@config/cache'
 // import { RedisClient } from 'ioredis/built/connectors/SentinelConnector/types';
 
-export default class RedisClass {
+class RedisCache {
   private client: RedisClient;
+  private connected = false;
 
   constructor() {
-    this.client = new Redis(chacheConfig.config.redis)
+    if (!this.connected) {
+      this.client = new Redis(chacheConfig.config.redis)
+      this.connected = true;
+    }
   }
 
   public async save(key: string, value: any): Promise<void> {
@@ -29,4 +33,6 @@ export default class RedisClass {
     await this.client.del(key);
   }
 }
+
+export default new RedisCache()
 
